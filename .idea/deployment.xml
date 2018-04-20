@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="https://github.com/mayaliv/Toxic_comments_classification" />
+  <component name="PublishConfigData" serverName="https://github.com/mayaliv/Toxic_comments_classification" uploadOnCheckin="b48d82af-bfdb-44f6-850e-f7211b38c899">
+    <option name="myUploadOnCheckinName" value="https://github.com/mayaliv/Toxic_comments_classification" />
+  </component>
 </project>
