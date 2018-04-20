@@ -45,7 +45,7 @@ y_i_hate_train = train_data[['identity_hate']]
 #
 
 vectorizer = TfidfVectorizer(max_features=20000, lowercase=True, analyzer='word',
-                        stop_words= 'english',ngram_range=(1,2),dtype=np.float32)
+                        stop_words= 'english',ngram_range=(1,4),dtype=np.float32) #
 x_tfidf = vectorizer.fit_transform(train_data['comment_text'])
 
 x_tfidf_train=x_tfidf
@@ -62,37 +62,37 @@ X_train_insult, X_test_insult, y_train_insult, y_test_insult = train_test_split(
 X_train_i_hate, X_test_i_hate, y_train_i_hate, y_test_i_hate = train_test_split(x_tfidf, y_i_hate, test_size=0.33, random_state=42)
 
 
-model_toxic = LogisticRegressionCV()
+model_toxic = LogisticRegressionCV(cv=10)
 model_toxic.fit(X_train_toxic, np.ravel(y_train_toxic))
 pred_toxic=model_toxic.predict_proba(X_test_toxic)
 #df_toxic = pd.DataFrame(pred_toxic[:,1])
 #df_toxic.to_csv('pred_toxic.csv')
 
-model_s_toxic = LogisticRegressionCV()
+model_s_toxic = LogisticRegressionCV(cv=10)
 model_s_toxic.fit(X_train_s_toxic, np.ravel(y_train_s_toxic))
 pred_s_toxic=model_toxic.predict_proba(X_test_s_toxic)
 #df_s_toxic = pd.DataFrame(pred_s_toxic[:,1])
 #df_s_toxic.to_csv('pred_s_toxic.csv')
 
-model_obscene = LogisticRegressionCV()
+model_obscene = LogisticRegressionCV(cv=10)
 model_obscene.fit(X_train_obscene, np.ravel(y_train_obscene))
 pred_obscene=model_obscene.predict_proba(X_test_obscene)
 #df_obscene = pd.DataFrame(pred_obscene[:,1])
 #df_obscene.to_csv('pred_obscene.csv')
 
-model_threat = LogisticRegressionCV()
+model_threat = LogisticRegressionCV(cv=10)
 model_threat.fit(X_train_threat, np.ravel(y_train_threat))
 pred_threat=model_threat.predict_proba(X_test_threat)
 #df_threat = pd.DataFrame(pred_threat[:,1])
 #df_threat.to_csv('pred_threat.csv')
 
-model_insult = LogisticRegressionCV()
+model_insult = LogisticRegressionCV(cv=10)
 model_insult.fit(X_train_insult, np.ravel(y_train_insult))
 pred_insult=model_insult.predict_proba(X_test_insult)
 #df_insult = pd.DataFrame(pred_insult[:,1])
 #df_insult.to_csv('pred_insult.csv')
 
-model_i_hate = LogisticRegressionCV()
+model_i_hate = LogisticRegressionCV(cv=10)
 model_i_hate.fit(X_train_i_hate, np.ravel(y_train_i_hate))
 pred_i_hate=model_i_hate.predict_proba(X_test_i_hate)
 #df_i_hate = pd.DataFrame(pred_i_hate[:,1])
@@ -100,37 +100,37 @@ pred_i_hate=model_i_hate.predict_proba(X_test_i_hate)
 
 
 
-model_toxic_real = LogisticRegressionCV()
+model_toxic_real = LogisticRegressionCV(cv=10)
 model_toxic_real.fit(x_tfidf_train, np.ravel(y_toxic_train))
 pred_toxic_real=model_toxic_real.predict_proba(x_tfidf_test)
 #df_toxic = pd.DataFrame(pred_toxic[:,1])
 #df_toxic.to_csv('pred_toxic.csv')
 
-model_s_toxic_real = LogisticRegressionCV()
+model_s_toxic_real = LogisticRegressionCV(cv=10)
 model_s_toxic_real.fit(x_tfidf_train, np.ravel(y_s_toxic_train))
 pred_s_toxic_real=model_s_toxic_real.predict_proba(x_tfidf_test)
 #df_s_toxic = pd.DataFrame(pred_s_toxic[:,1])
 #df_s_toxic.to_csv('pred_s_toxic.csv')
 
-model_obscene_real = LogisticRegressionCV()
+model_obscene_real = LogisticRegressionCV(cv=10)
 model_obscene_real.fit(x_tfidf_train, np.ravel(y_obscene_train))
 pred_obscene_real=model_obscene_real.predict_proba(x_tfidf_test)
 #df_obscene = pd.DataFrame(pred_obscene[_real:,1])
 #df_obscene.to_csv('pred_obscene.csv')
 
-model_threat_real = LogisticRegressionCV()
+model_threat_real = LogisticRegressionCV(cv=10)
 model_threat_real.fit(x_tfidf_train, np.ravel(y_threat_train))
 pred_threat_real=model_threat_real.predict_proba(x_tfidf_test)
 #df_threat = pd.DataFrame(pred_threat[:,1])
 #df_threat.to_csv('pred_threat.csv')
 
-model_insult_real = LogisticRegressionCV()
+model_insult_real = LogisticRegressionCV(cv=10)
 model_insult_real.fit(x_tfidf_train, np.ravel(y_insult_train))
 pred_insult_real=model_insult.predict_proba(x_tfidf_test)
 #df_insult = pd.DataFrame(pred_insult[:,1])
 #df_insult.to_csv('pred_insult.csv')
 
-model_i_hate_real = LogisticRegressionCV()
+model_i_hate_real = LogisticRegressionCV(cv=10)
 model_i_hate_real.fit(x_tfidf_train, np.ravel(y_i_hate_train))
 pred_i_hate_real=model_i_hate.predict_proba(x_tfidf_test)
 #df_i_hate = pd.DataFrame(pred_i_hate[:,1])
